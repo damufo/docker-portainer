@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  portainer:
+    networks:
+      - proxy
+    labels:
+      - traefik.http.services.portainer.loadbalancer.server.port=9000
+      - traefik.http.routers.portainer-secure.rule=Host(`${FQDN}`)
+
+networks:
+  proxy:
+    external: true
